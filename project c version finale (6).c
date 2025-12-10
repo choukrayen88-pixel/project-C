@@ -48,15 +48,15 @@ int niveau_alerte(float t, config*cfg) {
         return 0;
     float ecart;
     if(t < cfg->seuil_min) {
-        ecart = cfg->seuil_min - t;  // Écart en dessous du min
+        ecart = cfg->seuil_min - t;  // ecart en dessous du min
     } else {
-        ecart = t - cfg->seuil_max;  // Écart au-dessus du max
+        ecart = t - cfg->seuil_max;  // ecart au-dessus du max
     }
     
-    // Déterminer le niveau selon l'écart
-    if(ecart > 10)  return 3;  // Critique
-    if(ecart > 5)   return 2;  // Modéré
-    return 1;                  // Léger
+    // Déterminer le niveau selon l'ecart
+    if(ecart > 10)  return 3;  
+    if(ecart > 5)   return 2;  
+    return 1;                  
 }
 
 void ajouter_entree(float t,int alerte){             // ajoute mesure dans journal
@@ -83,7 +83,7 @@ void sauvegarder_journal(){                    // sauvegarde toutes les entrees 
 void generer_rapport(){                          // genere rapport journalier
     FILE*f=fopen("rapport_journalier.txt","w");
     entry*p=journal;
-    if(!p){                                     // si liste vide
+    if(!p){                                     
         fprintf(f,"aucune donnee.\n");
         fclose(f);
         return;
@@ -160,4 +160,5 @@ int main(){
     sauvegarder_journal();                              // sauvegarder journal
     generer_rapport();                                  // generer rapport
     return 0;
+
 }
